@@ -123,7 +123,7 @@ function showSubjectMessage(msg, isError = false) {
     const messageDiv = document.getElementById('subjectMessage');
     messageDiv.textContent = msg;
     messageDiv.style.color = isError ? 'red' : 'green';
-    messageDiv.style.margin = '10px 0';
+    messageDiv.style.margin = '20px 0';
 }
 
 async function confirmDeleteSubject(id)
@@ -135,7 +135,7 @@ async function confirmDeleteSubject(id)
         const response = await subjectsAPI.remove(id);
 
         if (response && response.error) {
-            showSubjectMessage(response.error, true);
+            alert(response.error);
         } else {
             alert('Materia eliminada con éxito.');
             loadSubjects();
@@ -144,8 +144,6 @@ async function confirmDeleteSubject(id)
     catch (err)
     {
         console.error('Error al borrar materia:', err.message);
-        showSubjectMessage('Ocurrió un error al intentar borrar la materia.', true);
-
-       //alert('Ocurrió un error al intentar borrar la materia.Materia asignada');
+          alert('Ocurrió un error al intentar borrar la materia.Materia asignada');
     }
 }
