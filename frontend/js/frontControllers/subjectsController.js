@@ -119,6 +119,13 @@ function createSubjectActionsCell(subject)
     return td;
 }
 
+function showSubjectMessage(msg, isError = false) {
+    const messageDiv = document.getElementById('subjectMessage');
+    messageDiv.textContent = msg;
+    messageDiv.style.color = isError ? 'red' : 'green';
+    messageDiv.style.margin = '10px 0';
+}
+
 async function confirmDeleteSubject(id)
 {
     if (!confirm('¿Seguro que deseas borrar esta materia?')) return;
@@ -128,7 +135,7 @@ async function confirmDeleteSubject(id)
         const response = await subjectsAPI.remove(id);
 
         if (response && response.error) {
-            alert(response.error);
+            showSubjectMessage(response.error, true);
         } else {
             alert('Materia eliminada con éxito.');
             loadSubjects();
@@ -137,6 +144,8 @@ async function confirmDeleteSubject(id)
     catch (err)
     {
         console.error('Error al borrar materia:', err.message);
-        alert('Ocurrió un error al intentar borrar la materia.');
+        showSubjectMessage('Ocurrió un error al intentar borrar la materia.', true);
+
+       //alert('Ocurrió un error al intentar borrar la materia.Materia asignada');
     }
 }
