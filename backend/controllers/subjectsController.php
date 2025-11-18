@@ -71,7 +71,8 @@ function handleDelete($conn)
     else 
     {
         http_response_code(500);
-        echo json_encode(["error" => "No se pudo eliminar"]);
+         $errorMsg = isset($result['error']) ? $result['error'] : "No se puede borrar una materia asignada";
+        echo json_encode(["error" => $errorMsg]);
     }
 }
 ?>

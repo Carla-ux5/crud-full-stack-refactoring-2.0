@@ -125,11 +125,18 @@ async function confirmDeleteSubject(id)
 
     try
     {
-        await subjectsAPI.remove(id);
-        loadSubjects();
+        const response = await subjectsAPI.remove(id);
+
+        if (response && response.error) {
+            alert(response.error);
+        } else {
+            alert('Materia eliminada con éxito.');
+            loadSubjects();
+        }
     }
     catch (err)
     {
         console.error('Error al borrar materia:', err.message);
+        alert('Ocurrió un error al intentar borrar la materia.');
     }
 }

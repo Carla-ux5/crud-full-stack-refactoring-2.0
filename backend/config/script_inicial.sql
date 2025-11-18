@@ -11,7 +11,7 @@ CREATE USER 'student'@'localhost' IDENTIFIED BY '12345';
 GRANT ALL PRIVILEGES ON students.* TO 'student'@'localhost';
 
 /*Aplicar los cambios en los permisos​*/
-FLUSH PRIVILEGES;​
+FLUSH PRIVILEGES;
 /******************************************************************************/
 
 /*************A PARTIR DE ACÁ SE PUEDE HACER COMO ROOT 
@@ -59,7 +59,7 @@ CREATE TABLE students_subjects (
     approved BOOLEAN DEFAULT FALSE,
     UNIQUE (student_id, subject_id),
     FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
-    FOREIGN KEY (subject_id) REFERENCES subjects(id) ON DELETE CASCADE
+    FOREIGN KEY (subject_id) REFERENCES subjects(id) ON DELETE RESTRICT
 ) ENGINE=INNODB;
 
 /*Insertar relaciones de prueba students_subjects*/

@@ -53,6 +53,19 @@ function updateSubject($conn, $id, $name)
 
 function deleteSubject($conn, $id) 
 {
+        /*$checkSql = "SELECT COUNT(*) as count FROM students_subjects WHERE subject_id = ?";
+    $checkStmt = $conn->prepare($checkSql);
+    $checkStmt->bind_param("i", $id);
+    $checkStmt->execute();
+    $result = $checkStmt->get_result();
+    $row = $result->fetch_assoc();
+
+    if ($row['count'] > 0) {
+        // No se puede borrar porque está asignada
+        return ['deleted' => 0, 'error' => 'La materia está asignada a uno o más estudiantes.'];
+    }
+    else*/
+
     $sql = "DELETE FROM subjects WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);
